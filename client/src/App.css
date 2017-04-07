@@ -12,8 +12,9 @@ html {
 #food-search {
   margin-top: 1em;
 }
-#food-search table{
+.food-search-table {
   width: 50%;
+  margin: 10px auto;
 }
 
 input {
