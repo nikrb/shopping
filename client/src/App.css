@@ -9,6 +9,13 @@ html {
   text-align: center;
 }
 
+#food-search {
+  margin-top: 1em;
+}
+#food-search table{
+  width: 50%;
+}
+
 input {
   line-height: 2em;
   border-radius: 5px;
