@@ -37,7 +37,7 @@ export default function SelectedFoods(props) {
       <tfoot>
         <tr>
           <th>Total</th>
-          <th></th>
+          <th></th><th></th>
           <th
             className='right-align'
             id='total-kcal'

@@ -81,12 +81,26 @@ class FoodSearch extends React.Component {
                       onChange={this.handleSearchChange}
                     />
                     <i className='search icon' />
+                    <i
+                      className='remove icon'
+                      onClick={this.handleSearchCancel}
+                      style={removeIconStyle}
+                    />
+                    <select>
+                      <option value="Kg">Kg</option>
+                      <option value='unit'>Unit</option>
+                    </select>
+                    <input type='text'
+                      className='entry-narrow'
+                      value={this.state.amount}
+                      onChange={this.handleAmountChange}
+                    />
+                    <input type='text'
+                      className='entry-narrow'
+                      value={this.state.cost}
+                      onChange={this.handleCostChange}
+                    />
                   </div>
-                  <i
-                    className='remove icon'
-                    onClick={this.handleSearchCancel}
-                    style={removeIconStyle}
-                  />
                 </div>
               </th>
             </tr>

@@ -12,9 +12,22 @@ input {
   line-height: 2em;
   border-radius: 5px;
   outline: none;
+  padding: 5px;
+  margin-right: 5px;
 }
 input:focus {
-  border-color: #88f;
+  border-color: rgba( 127, 127, 255, 0.5);
+}
+
+select {
+  line-height: 2em;
+  border-radius: 5px;
+  padding:5px;
+  margin-right: 5px;
+}
+
+.entry-narrow {
+  width: 3em;
 }
 
 .hand-select{
