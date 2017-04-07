@@ -8,6 +8,7 @@ html {
   margin: 0 auto;
   text-align: center;
 }
+
 input {
   line-height: 2em;
   border-radius: 5px;
@@ -20,6 +21,7 @@ input:focus {
 }
 
 select {
+  height: 3em;
   line-height: 2em;
   border-radius: 5px;
   padding:5px;
@@ -28,6 +30,17 @@ select {
 
 .entry-narrow {
   width: 3em;
+}
+
+button {
+  font-size: 1.5em;
+  font-weight: bold;
+  background: linear-gradient( to top, limegreen, lime); /* lawngreen, springgreen); */
+  border-radius: 10px;
+}
+button:focus {
+  outline: none;
+  box-shadow: 1px 0px 6px lime;
 }
 
 .hand-select{
@@ -41,7 +54,7 @@ select {
 }
 .table-wrapper {
   width: 600px;
-  margin: 0 auto;
+  margin: 5px auto;
   padding: 20px;
   border: 1px solid rgba( 0,0,0,0.2);
   border-radius: 10px;
