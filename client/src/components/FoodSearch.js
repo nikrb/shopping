@@ -61,24 +61,20 @@ class FoodSearch extends React.Component {
         key={idx}
         onClick={this.handleFoodClick.bind(this, food)}
       >
-        <td>{food.Shrt_Desc}</td>
-        <td className='right aligned'>{food.Energ_Kcal}</td>
-        <td className='right aligned'>{food['Protein_(g)']}</td>
-        <td className='right aligned'>{food['FA_Sat_(g)']}</td>
-        <td className='right aligned'>{food['Carbohydrt_(g)']}</td>
+        <td>{food.name}</td>
+        <td className='right aligned'>{food.units}</td>
       </tr>
     ));
 
     return (
       <div id='food-search'>
-        <table className='ui selectable structured large table'>
+        <table>
           <thead>
             <tr>
               <th colSpan='5'>
-                <div className='ui fluid search'>
-                  <div className='ui icon input'>
+                <div>
+                  <div>
                     <input
-                      className='prompt'
                       type='text'
                       placeholder='Search foods...'
                       value={this.state.searchValue}
@@ -95,11 +91,8 @@ class FoodSearch extends React.Component {
               </th>
             </tr>
             <tr>
-              <th className='eight wide'>Description</th>
-              <th>Kcal</th>
-              <th>Protein (g)</th>
-              <th>Fat (g)</th>
-              <th>Carbs (g)</th>
+              <th>Description</th>
+              <th>Units</th>
             </tr>
           </thead>
           <tbody>

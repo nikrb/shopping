@@ -31,9 +31,8 @@ app.get('/api/food', (req, res) => {
     return;
   }
 
-  db.collection( 'foods').find( { Shrt_Desc: new RegExp( ".*"+param+".*", 'i')})
+  db.collection( 'foods').find( { name: new RegExp( ".*"+param+".*", 'i')})
   .toArray( function( err, items){
-    console.log( "found food count:", items.length);
     res.json( items);
   });
 });

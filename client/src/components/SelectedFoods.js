@@ -9,11 +9,10 @@ export default function SelectedFoods(props) {
       key={idx}
       onClick={() => props.onFoodClick(idx)}
     >
-      <td className="left-align hand-select">{food.Shrt_Desc}</td>
-      <td className='right-align'>{food.Energ_Kcal}</td>
-      <td className='right-align'>{food['Protein_(g)']}</td>
-      <td className='right-align'>{food['FA_Sat_(g)']}</td>
-      <td className='right-align'>{food['Carbohydrt_(g)']}</td>
+      <td className="left-align hand-select">{food.name}</td>
+      <td className='right-align'>{food.units}</td>
+      <td className='right-align'>{food.amount}</td>
+      <td className='right-align'>{food.cost}</td>
     </tr>
   ));
 
@@ -27,10 +26,9 @@ export default function SelectedFoods(props) {
         </tr>
         <tr>
           <th className="left-align">Description</th>
-          <th className="right-align">Kcal</th>
-          <th className="right-align">Protein (g)</th>
-          <th className="right-align">Fat (g)</th>
-          <th className="right-align">Carbs (g)</th>
+          <th className="right-align">Units</th>
+          <th className="right-align">Amount</th>
+          <th className="right-align">Cost</th>
         </tr>
       </thead>
       <tbody>
@@ -39,29 +37,12 @@ export default function SelectedFoods(props) {
       <tfoot>
         <tr>
           <th>Total</th>
+          <th></th>
           <th
             className='right-align'
             id='total-kcal'
           >
-            {sum(foods, 'Energ_Kcal')}
-          </th>
-          <th
-            className='right-align'
-            id='total-protein_g'
-          >
-            {sum(foods, 'Protein_(g)')}
-          </th>
-          <th
-            className='right-align'
-            id='total-fat_g'
-          >
-            {sum(foods, 'FA_Sat_(g)')}
-          </th>
-          <th
-            className='right-align'
-            id='total-carbohydrate_g'
-          >
-            {sum(foods, 'Carbohydrt_(g)')}
+            {sum(foods, 'cost')}
           </th>
         </tr>
       </tfoot>
