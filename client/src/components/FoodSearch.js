@@ -63,7 +63,7 @@ class FoodSearch extends React.Component {
     const food = { name: this.state.searchValue, unit: this.state.unit,
       amount: this.state.amount, cost: this.state.cost };
     console.log( "add food:", food);
-    // this.props.onFoodClick( food);
+    this.props.onFoodClick( food);
     this.handleSearchCancel();
   };
   handleAmountChange = (e) => {
