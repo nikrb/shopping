@@ -6,6 +6,7 @@ const MATCHING_ITEM_LIMIT = 25;
 class FoodSearch extends React.Component {
   state = {
     foods: [],
+    name: "",
     unit: "",
     amount: "",
     cost:"",
@@ -43,14 +44,19 @@ class FoodSearch extends React.Component {
       foods: [],
       showRemoveIcon: false,
       searchValue: '',
+      name: "",
       unit: "",
       amount: "",
       cost:""
     });
   };
 
-  handleFoodClick = () => {
-
+  handleFoodClick = function( food){
+    console.log( "food clicked:", food);
+    this.setState({ name: food.name, searchValue: food.name, unit:food.units}, function(){
+      console.log( "state:", this.state);
+    });
+    this.entry_amount.focus();
   };
 
   handleSearchSelect = function( food){
@@ -63,6 +69,9 @@ class FoodSearch extends React.Component {
   };
   handleCostChange = (e) => {
     this.setState( { cost: e.target.value});
+  };
+  handleTextFocus = (e) => {
+    e.target.select();
   };
 
   render() {
@@ -77,7 +86,7 @@ class FoodSearch extends React.Component {
         key={idx}
         onClick={this.handleFoodClick.bind(this, food)}
       >
-        <td className="left-align">{food.name}</td>
+        <td className="left-align hand-select">{food.name}</td>
         <td>{food.units}</td>
       </tr>
     ));
@@ -98,13 +107,15 @@ class FoodSearch extends React.Component {
             style={removeIconStyle}
           />
           <select onChange={this.handleUnitChange} value={this.state.unit}>
-            <option value="Kg">Kg</option>
+            <option value="kg">Kg</option>
             <option value='unit'>Unit</option>
           </select>
           <input type='text'
             className='entry-narrow'
             value={this.state.amount}
             onChange={this.handleAmountChange}
+            onFocus={this.handleTextFocus}
+            ref={(input) => { this.entry_amount = input;}}
           />
           <input type='text'
             className='entry-narrow'
