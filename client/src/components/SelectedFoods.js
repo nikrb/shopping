@@ -10,9 +10,9 @@ export default function SelectedFoods(props) {
       onClick={() => props.onFoodClick(idx)}
     >
       <td className="left-align hand-select">{food.name}</td>
-      <td className='right-align'>{food.units}</td>
+      <td className='right-align'>{food.unit}</td>
       <td className='right-align'>{food.amount}</td>
-      <td className='right-align'>{food.cost}</td>
+      <td className='right-align'>{food.cost.toFixed(2)}</td>
     </tr>
   ));
 
@@ -51,7 +51,7 @@ export default function SelectedFoods(props) {
 }
 
 function sum(foods, prop) {
-  return foods.reduce((memo, food) => (
-    parseInt(food[prop], 10) + memo
+  return foods.reduce((curval, food) => (
+    parseFloat(food[prop], 10) + curval
   ), 0.0).toFixed(2);
 }
