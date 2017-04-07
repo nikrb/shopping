@@ -59,9 +59,11 @@ class FoodSearch extends React.Component {
     this.entry_amount.focus();
   };
 
-  handleSearchSelect = function( food){
+  handleSearchSelect = () => {
+    const food = { name: this.state.searchValue, unit: this.state.unit,
+      amount: this.state.amount, cost: this.state.cost };
+    console.log( "add food:", food);
     // this.props.onFoodClick( food);
-    console.log( "state:", this.state);
     this.handleSearchCancel();
   };
   handleAmountChange = (e) => {
@@ -71,7 +73,7 @@ class FoodSearch extends React.Component {
     this.setState( { cost: e.target.value});
   };
   handleTextFocus = (e) => {
-    e.target.select();
+    // e.target.select();
   };
 
   render() {
