@@ -1,0 +1,58 @@
+<style>
+html {
+  font-family: sans-serif;
+}
+.right-align {
+  text-align: right;
+}
+.left-align {
+  text-align: left;
+}
+.table-wrapper {
+  width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid rgba( 0,0,0,0.2);
+  border-radius: 10px;
+  background-color: rgba( 127,127,255,0.1);
+}
+table {
+  width: 100%;
+}
+</style>
+<div class="table-wrapper">
+  <table>
+    <thead>
+      <tr>
+        <th colSpan='5'>
+          <h3>Selected foods</h3>
+        </th>
+      </tr>
+      <tr>
+        <th class="left-align">Description</th>
+        <th class="right-align">Kcal</th>
+        <th class="right-align">Protein (g)</th>
+        <th class="right-align">Fat (g)</th>
+        <th class="right-align">Carbs (g)</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="left-align">Hash Browns</td>
+        <td class="right-align">717</td>
+        <td class="right-align">0.85</td>
+        <td class="right-align">51.368</td>
+        <td class="right-align">0.006</td>
+      </tr>
+    </tbody>
+    <tfoot>
+      <tr>
+        <th>Total</th>
+        <th class="right-align" id='total-kcal'>0</th>
+        <th class="right-align" id='total-protein_g'>0</th>
+        <th class="right-align" id='total-fat_g'>0</th>
+        <th class="right-align" id='total-carbohydrate_g'>0</th>
+      </tr>
+    </tfoot>
+  </table>
+</div>
