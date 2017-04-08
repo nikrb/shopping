@@ -21,9 +21,18 @@ class FoodSearch extends React.Component {
     if (value === '') {
       this.setState({ foods: []});
     } else {
-      Client.search(value, (foods) => {
-        this.setState({ foods: foods.slice(0, MATCHING_ITEM_LIMIT)});
-      });
+      const last_char = value.slice( -1);
+      const ndx = parseInt( last_char, 10);
+      if( isNaN( ndx)){
+        Client.search(value, (foods) => {
+          this.setState({ foods: foods.slice(0, MATCHING_ITEM_LIMIT)});
+        });
+      } else {
+        if( typeof this.state.foods[ndx] !== "undefined"){
+          console.log( "numbered food list:", this.state.foods[ndx-1]);
+          this.handleFoodClick( this.state.foods[ndx-1]);
+        }
+      }
     }
   };
 
@@ -82,6 +91,7 @@ class FoodSearch extends React.Component {
         key={idx}
         onClick={this.handleFoodClick.bind(this, food)}
       >
+        <td>{idx+1}</td>
         <td className="left-align hand-select">{food.name}</td>
         <td>{food.units}</td>
       </tr>
@@ -124,6 +134,7 @@ class FoodSearch extends React.Component {
           <table>
             <thead>
               <tr>
+                <th className="entry-narrow">&nbsp;</th>
                 <th className="left-align">Description</th>
                 <th>Units</th>
               </tr>
