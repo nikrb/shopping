@@ -89,21 +89,36 @@ class FoodSearch extends React.Component {
 
     return (
       <div id='food-search'>
-        <div>
-          <input type='text' placeholder='Search foods...'
-            value={this.state.searchValue} onChange={this.handleSearchChange}
-            ref={(search_input) => { this.search_input = search_input;}}/>
-          <select onChange={this.handleUnitChange} value={this.state.units}
-            onKeyUp={this.handleUnitsKeyUp} >
-            <option value="kg">Kg</option>
-            <option value='unit'>Unit</option>
-          </select>
-          <input type='text' className='entry-narrow' value={this.state.amount}
-            onChange={this.handleAmountChange} onFocus={this.handleTextFocus}
-            ref={(input) => { this.entry_amount = input;}} />
-          <input type='text' className='entry-narrow'
-            value={this.state.cost} onChange={this.handleCostChange} />
-          <button type="button" onClick={this.handleSearchSelect}>+</button>
+        <div id='food-input-form'>
+          <div className='food-field'>
+            <label htmlFor="name_field" className="left-align">Name</label>
+            <input type='text' placeholder='Search foods...'
+              value={this.state.searchValue} onChange={this.handleSearchChange}
+              ref={(search_input) => { this.search_input = search_input;}}/>
+          </div>
+          <div className="food-field">
+            <label htmlFor="units_field">Units</label>
+            <select name="units_field" onChange={this.handleUnitChange} value={this.state.units}
+              onKeyUp={this.handleUnitsKeyUp} >
+              <option value="kg">Kg</option>
+              <option value='unit'>Unit</option>
+            </select>
+          </div>
+          <div className="food-field">
+            <label htmlFor="amount_field">Amount</label>
+            <input type='text' name="amount_field" className='entry-narrow' value={this.state.amount}
+              onChange={this.handleAmountChange} onFocus={this.handleTextFocus}
+              ref={(input) => { this.entry_amount = input;}} />
+          </div>
+          <div className="food-field">
+            <label htmlFor="cost_field">Cost</label>
+            <input type='text' name="cost_field" className='entry-narrow'
+              value={this.state.cost} onChange={this.handleCostChange} />
+          </div>
+          <div className="food-field">
+            <label htmlFor="add_button">&nbsp;</label>
+            <button type="button" name="add_button" onClick={this.handleSearchSelect}>+</button>
+          </div>
         </div>
         <div className='food-search-table'>
           <table>

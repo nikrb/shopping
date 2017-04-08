@@ -2,13 +2,22 @@
 html {
   font-family: sans-serif;
 }
-
+label {
+  display: block;
+  font-size: 0.8em;
+}
+.food-field {
+  float: left;
+}
 .App {
   width: 600px;
   margin: 0 auto;
   text-align: center;
 }
-
+#food-input-form {
+  display:flex;
+  justify-content: center;
+}
 #food-search {
   margin-top: 1em;
 }
