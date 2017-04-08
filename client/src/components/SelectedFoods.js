@@ -5,12 +5,9 @@ export default function SelectedFoods(props) {
   const { foods } = props;
 
   const foodRows = foods.map((food, idx) => (
-    <tr
-      key={idx}
-      onClick={() => props.onFoodClick(idx)}
-    >
-      <td className="left-align hand-select">{food.name}</td>
-      <td className='right-align'>{food.unit}</td>
+    <tr className="hand-select" key={idx} onClick={() => props.onFoodClick(idx)} >
+      <td className="left-align">{food.name}</td>
+      <td className='right-align'>{food.units}</td>
       <td className='right-align'>{food.amount}</td>
       <td className='right-align'>{food.cost.toFixed(2)}</td>
     </tr>
@@ -38,10 +35,7 @@ export default function SelectedFoods(props) {
         <tr>
           <th>Total</th>
           <th></th><th></th>
-          <th
-            className='right-align'
-            id='total-kcal'
-          >
+          <th className='right-align'>
             {sum(foods, 'cost')}
           </th>
         </tr>
