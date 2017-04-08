@@ -58,6 +58,18 @@ class FoodSearch extends React.Component {
   handleTextFocus = (e) => {
     // e.target.select();
   };
+  handleUnitsKeyUp = (e) => {
+    switch( e.keyCode){
+      case 75: // k
+        this.setState( { units: 'kg'});
+        break;
+      case 85: // u
+        this.setState( { units: 'unit'});
+        break;
+      default:
+        break;
+    }
+  };
 
   render() {
     const { foods } = this.state;
@@ -81,7 +93,8 @@ class FoodSearch extends React.Component {
           <input type='text' placeholder='Search foods...'
             value={this.state.searchValue} onChange={this.handleSearchChange}
             ref={(search_input) => { this.search_input = search_input;}}/>
-          <select onChange={this.handleUnitChange} value={this.state.units}>
+          <select onChange={this.handleUnitChange} value={this.state.units}
+            onKeyUp={this.handleUnitsKeyUp} >
             <option value="kg">Kg</option>
             <option value='unit'>Unit</option>
           </select>
