@@ -20,6 +20,15 @@ label {
 .food-field {
   float: left;
 }
+
+.container {
+  margin: 5px;
+  padding: 20px;
+  border: 1px solid rgba( 0,0,0,0.2);
+  border-radius: 10px;
+  background-color: rgba( 127,127,255,0.1);
+}
+
 .App {
   display:flex;
   justify-content: center;
@@ -54,7 +63,7 @@ select {
 }
 
 .entry-narrow {
-  width: 3em;
+  max-width: 3em;
 }
 
 button {
@@ -76,11 +85,4 @@ button:focus {
 }
 .left-align {
   text-align: left;
-}
-.table-wrapper {
-  margin: 5px;
-  padding: 20px;
-  border: 1px solid rgba( 0,0,0,0.2);
-  border-radius: 10px;
-  background-color: rgba( 127,127,255,0.1);
 }

@@ -26,12 +26,12 @@ class App extends Component {
       <div>
         <h1>Shopping List</h1>
         <div className='App'>
-          <div className='table-wrapper'>
+          <div className='container'>
             <FoodSearch
               onFoodClick={this.addFood}
               />
           </div>
-          <div className='table-wrapper'>
+          <div className='container'>
             <SelectedFoods
               foods={selectedFoods}
               onFoodClick={this.removeFoodItem}
