@@ -5,6 +5,12 @@ html {
 h1 {
   text-align: center;
 }
+th {
+  padding: 5px;
+}
+tr:nth-child(even) {
+  background-color: rgba(127, 127, 255, 0.2);
+}
 label {
   display: block;
   font-size: 0.8em;
