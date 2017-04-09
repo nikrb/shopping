@@ -64,6 +64,7 @@ class FoodSearch extends React.Component {
   handleCostChange = (e) => {
     this.setState( { cost: e.target.value});
   };
+  // TODO: interesting, text is still highlighted on focus
   handleTextFocus = (e) => {
     // e.target.select();
   };
@@ -78,6 +79,9 @@ class FoodSearch extends React.Component {
       default:
         break;
     }
+  };
+  handleUnitsChange = (e) => {
+    this.setState( { units : e.target.value});
   };
 
   render() {
@@ -108,16 +112,17 @@ class FoodSearch extends React.Component {
           </div>
           <div className="food-field">
             <label htmlFor="units_field">Units</label>
-            <select name="units_field" onChange={this.handleUnitChange} value={this.state.units}
-              onKeyUp={this.handleUnitsKeyUp} >
+            <select name="units_field" onKeyUp={this.handleUnitsKeyUp}
+              value={this.state.units} onChange={this.handleUnitsChange} >
               <option value="kg">Kg</option>
               <option value='unit'>Unit</option>
             </select>
           </div>
           <div className="food-field">
             <label htmlFor="amount_field">Amount</label>
-            <input type='text' name="amount_field" className='entry-narrow' value={this.state.amount}
-              onChange={this.handleAmountChange} onFocus={this.handleTextFocus}
+            <input type='text' name="amount_field" className='entry-narrow'
+              value={this.state.amount} onChange={this.handleAmountChange}
+              onFocus={this.handleTextFocus}
               ref={(input) => { this.entry_amount = input;}} />
           </div>
           <div className="food-field">
