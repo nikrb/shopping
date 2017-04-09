@@ -99,7 +99,7 @@ class FoodSearch extends React.Component {
 
     return (
       <div id='food-search'>
-        <div id='food-input-form'>
+        <div>
           <div className='food-field'>
             <label htmlFor="name_field" className="left-align">Name</label>
             <input type='text' placeholder='Search foods...'

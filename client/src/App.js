@@ -23,18 +23,20 @@ class App extends Component {
   render() {
     const { selectedFoods } = this.state;
     return (
-      <div className='App'>
-        <h1>Shopping</h1>
-        <div className='table-wrapper'>
-          <FoodSearch
-            onFoodClick={this.addFood}
+      <div>
+        <h1>Shopping List</h1>
+        <div className='App'>
+          <div className='table-wrapper'>
+            <FoodSearch
+              onFoodClick={this.addFood}
+              />
+          </div>
+          <div className='table-wrapper'>
+            <SelectedFoods
+              foods={selectedFoods}
+              onFoodClick={this.removeFoodItem}
             />
-        </div>
-        <div className='table-wrapper'>
-          <SelectedFoods
-            foods={selectedFoods}
-            onFoodClick={this.removeFoodItem}
-          />
+          </div>
         </div>
       </div>
     );
