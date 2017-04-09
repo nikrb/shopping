@@ -28,7 +28,7 @@ class FoodSearch extends React.Component {
           this.setState({ foods: foods.slice(0, MATCHING_ITEM_LIMIT)});
         });
       } else {
-        if( typeof this.state.foods[ndx] !== "undefined"){
+        if( typeof this.state.foods[ndx-1] !== "undefined"){
           console.log( "numbered food list:", this.state.foods[ndx-1]);
           this.handleFoodClick( this.state.foods[ndx-1]);
         }
