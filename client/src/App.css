@@ -19,7 +19,6 @@ label {
   justify-content: center;
   flex-wrap: wrap;
   align-items: flex-start;
-  text-align: center;
 }
 #food-search {
   margin-top: 1em;
@@ -73,13 +72,9 @@ button:focus {
   text-align: left;
 }
 .table-wrapper {
-  max-width: 600px;
-  margin: 5px auto;
+  margin: 5px;
   padding: 20px;
   border: 1px solid rgba( 0,0,0,0.2);
   border-radius: 10px;
   background-color: rgba( 127,127,255,0.1);
-}
-table {
-  width: 100%;
 }
