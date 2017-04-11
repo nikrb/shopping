@@ -86,3 +86,7 @@ button:focus {
 .left-align {
   text-align: left;
 }
+
+.nav {
+  list-style: none;
+}

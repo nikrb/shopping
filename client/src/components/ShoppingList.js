@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
-import SelectedFoods from './components/SelectedFoods';
-import FoodSearch from './components/FoodSearch';
-import './App.css';
+import SelectedFoods from './SelectedFoods';
+import FoodSearch from './FoodSearch';
 
-class App extends Component {
+export default class ShoppingList extends Component {
   state = {
     selectedFoods: [],
   }
@@ -42,5 +41,3 @@ class App extends Component {
     );
   }
 }
-
-export default App;
