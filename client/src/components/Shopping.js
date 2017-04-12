@@ -22,7 +22,7 @@ export default class Shopping extends React.Component {
     LocalDB.close();
   };
   render = () => {
-    const lists = this.shopping_lists.map( (item) => {
+    const lists = this.state.shopping_lists.map( (item) => {
       return (
         <tr><td>{item.created}</td></tr>
       );
