@@ -1,5 +1,5 @@
 
-export default function LocalDB(){
+function LocalDB(){
   const db_name = "shoppingDB";
   const that = {};
   let idb = null;
@@ -101,4 +101,6 @@ export default function LocalDB(){
   that.close = close;
   that.getAll = getAllShoppingLists;
   return that;
-}
+};
+
+export default LocalDB();
