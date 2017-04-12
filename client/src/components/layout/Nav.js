@@ -1,6 +1,6 @@
 import React from "react";
 // TODO: keep link for now
-import { IndexLink /*, Link*/ } from "react-router";
+import { IndexLink /*, Link*/ } from "react-router-dom";
 
 export default class Nav extends React.Component {
   constructor() {
