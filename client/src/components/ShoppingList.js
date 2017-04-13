@@ -7,6 +7,9 @@ export default class ShoppingList extends Component {
   state = {
     selectedFoods: [],
   };
+  componentWillMount = () => {
+    console.log( this.props);
+  };
   removeFoodItem = (itemIndex) => {
     const filteredFoods = this.state.selectedFoods.filter(
       (item, idx) => itemIndex !== idx,

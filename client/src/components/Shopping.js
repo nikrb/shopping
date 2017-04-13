@@ -24,7 +24,7 @@ export default class Shopping extends React.Component {
   };
   newList = () => {
     console.log( "new list");
-    browserHistory.push( '/list');
+    browserHistory.push( { pathname: '/list', state: { list: {}}});
   };
   render = () => {
     const lists = this.state.shopping_lists.map( (item) => {
