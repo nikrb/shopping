@@ -22,6 +22,13 @@ if (process.env.NODE_ENV === 'production') {
   app.use(express.static('client/build'));
 }
 
+/* pass mongo down
+app.use(function(req, res, next) {
+  req.db = {};
+  req.db.tasks = db.collection('tasks');
+  next();
+});
+*/
 app.use( bodyParser.json());
 
 app.get('/api/food', (req, res) => {
