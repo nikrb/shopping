@@ -1,5 +1,6 @@
 import React from 'react';
 import LocalDB from '../LocalDB';
+import {browserHistory} from 'react-router';
 
 export default class Shopping extends React.Component {
   state = {
@@ -18,8 +19,12 @@ export default class Shopping extends React.Component {
     });
   };
   componentWillUnmount = () => {
-    console.log( "closing local db");
-    LocalDB.close();
+    // console.log( "closing local db");
+    // LocalDB.close();
+  };
+  newList = () => {
+    console.log( "new list");
+    browserHistory.push( '/list');
   };
   render = () => {
     const lists = this.state.shopping_lists.map( (item) => {
@@ -31,6 +36,7 @@ export default class Shopping extends React.Component {
       <div>
         <h1>Shopping Lists</h1>
         <div className="container">
+          <button type="button" onClick={this.newList} >+</button>
           <table>
             {lists}
           </table>
