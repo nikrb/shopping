@@ -1,6 +1,6 @@
 import React from "react";
 // TODO: keep link for now
-import { IndexLink /*, Link*/ } from "react-router-dom";
+import { IndexLink /*, Link*/ } from "react-router";
 
 export default class Nav extends React.Component {
   constructor() {
@@ -27,10 +27,10 @@ export default class Nav extends React.Component {
 
     return (
       // TODO: removed role="navigation"
+      // TODO: removed className="navbar-toggle"
       <nav>
         <div className="container">
           <div>
-            // TODO: removed className="navbar-toggle"
             <button type="button" onClick={this.toggleCollapse.bind(this)} >
               <span className="sr-only">Toggle navigation</span>
               <span className="icon-bar"></span>

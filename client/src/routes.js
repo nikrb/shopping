@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { Router, Route, IndexRoute, browserHistory } from 'react-router';
 
 import App from './components/App/App';
 import Shopping from './components/Shopping';
@@ -7,13 +7,12 @@ import About from './components/About';
 import NotFound from './components/NotFound';
 
 const Routes = () => (
-  <Router>
-    <div>
-      <Route path="/" component={App} />
-      <Route path="/" component={Shopping} />
-      <Route path="/about" component={About} />
-      <Route path="/notexist" component={NotFound} />
-    </div>
+  <Router history={browserHistory}>
+    <Route path="/" component={App} >
+      <IndexRoute component={Shopping} ></IndexRoute>
+      <Route path="/about" component={About} ></Route>
+      <Route path="/notexist" component={NotFound} ></Route>
+    </Route>
   </Router>
 );
 export default Routes;
