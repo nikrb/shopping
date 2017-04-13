@@ -2,6 +2,8 @@ import React from "react";
 // TODO: keep link for now
 import { IndexLink /*, Link*/ } from "react-router";
 
+import './nav.css';
+
 export default class Nav extends React.Component {
   constructor() {
     super()
@@ -29,20 +31,17 @@ export default class Nav extends React.Component {
       // TODO: removed role="navigation"
       // TODO: removed className="navbar-toggle"
       <nav>
-        <div className="container">
-          <div>
-            <button type="button" onClick={this.toggleCollapse.bind(this)} >
-              <span className="sr-only">Toggle navigation</span>
-              <span className="icon-bar"></span>
-            </button>
-          </div>
-          <div className={navClass} >
-            <ul className="nav">
-              <li className={shoppingClass} >
-                <IndexLink to="/" onClick={this.toggleCollapse.bind(this)}>Home</IndexLink>
-              </li>
-            </ul>
-          </div>
+        <div>
+          <button type="button" onClick={this.toggleCollapse.bind(this)} >
+            <span>&#9776;</span>
+          </button>
+        </div>
+        <div className={navClass} >
+          <ul className="nav">
+            <li className={shoppingClass} >
+              <IndexLink to="/" onClick={this.toggleCollapse.bind(this)}>Home</IndexLink>
+            </li>
+          </ul>
         </div>
       </nav>
     );
