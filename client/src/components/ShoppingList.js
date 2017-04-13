@@ -5,10 +5,13 @@ import FoodSearch from './FoodSearch';
 
 export default class ShoppingList extends Component {
   state = {
+    created: null,
     selectedFoods: [],
   };
   componentWillMount = () => {
     console.log( this.props);
+    const { created, selectedFoods} = this.props.location.state;
+    this.setState( { created: created, selectedFoods: selectedFoods});
   };
   removeFoodItem = (itemIndex) => {
     const filteredFoods = this.state.selectedFoods.filter(
@@ -20,6 +23,7 @@ export default class ShoppingList extends Component {
   addFood = (food) => {
     const newFoods = this.state.selectedFoods.concat(food);
     this.setState({ selectedFoods: newFoods });
+    console.log( "date created:", this.state.created.format( 'DD-MMM-YYYY HH:mm'));
   };
 
   render() {

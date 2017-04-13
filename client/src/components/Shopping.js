@@ -1,6 +1,7 @@
 import React from 'react';
 import LocalDB from '../LocalDB';
 import {browserHistory} from 'react-router';
+import moment from 'moment';
 
 export default class Shopping extends React.Component {
   state = {
@@ -24,7 +25,7 @@ export default class Shopping extends React.Component {
   };
   newList = () => {
     console.log( "new list");
-    browserHistory.push( { pathname: '/list', state: { list: {}}});
+    browserHistory.push( { pathname: '/list', state: { created: moment(), selectedFoods: []}});
   };
   render = () => {
     const lists = this.state.shopping_lists.map( (item) => {
