@@ -9,7 +9,8 @@ export default class ShoppingList extends Component {
     selectedFoods: [],
   };
   componentWillMount = () => {
-    console.log( this.props);
+    console.log( "at shopping list mount");
+    console.log( this.props.location);
     const { created, selectedFoods} = this.props.location.state;
     this.setState( { created: created, selectedFoods: selectedFoods});
   };

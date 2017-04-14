@@ -1,10 +1,11 @@
 import React from 'react';
+import {Redirect} from 'react-router-dom';
 import LocalDB from '../LocalDB';
-import {browserHistory} from 'react-router';
 import moment from 'moment';
 
 export default class Shopping extends React.Component {
   state = {
+    goShoppingList: false,
     shopping_lists: []
   };
   componentWillMount = () => {
@@ -20,14 +21,22 @@ export default class Shopping extends React.Component {
     });
   };
   componentWillUnmount = () => {
-    // console.log( "closing local db");
-    // LocalDB.close();
+    console.log( "closing local db");
+    LocalDB.close();
   };
   newList = () => {
-    console.log( "new list");
-    browserHistory.push( { pathname: '/list', state: { created: moment(), selectedFoods: []}});
+    this.setState( { goShoppingList: { created: moment(), selectedFoods: []}});
   };
   render = () => {
+    if( this.state.goShoppingList){
+      console.log( "moving to shopping list with:", this.state.goShoppingList);
+      return (
+        <Redirect to={{
+          pathname:"/list",
+          state: { list: this.state.goShoppingList}
+        }} />
+      );
+    }
     const lists = this.state.shopping_lists.map( (item) => {
       return (
         <tr><td>{item.created}</td></tr>
