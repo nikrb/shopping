@@ -33,15 +33,13 @@ app.use( bodyParser.json());
 
 app.get('/api/food', (req, res) => {
   const param = req.query.q;
-
-  if (!param) {
-    res.json({
-      error: 'Missing required parameter `q`',
-    });
-    return;
+  // allow fetch all
+  let search = {};
+  if (param) {
+    search = { name: new RegExp( ".*"+param+".*", 'i')};
   }
 
-  db.collection( 'foods').find( { name: new RegExp( ".*"+param+".*", 'i')})
+  db.collection( 'foods').find( search)
   .toArray( function( err, items){
     res.json( items);
   });
