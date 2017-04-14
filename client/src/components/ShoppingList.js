@@ -9,9 +9,10 @@ export default class ShoppingList extends Component {
     selectedFoods: [],
   };
   componentWillMount = () => {
-    console.log( "at shopping list mount");
-    console.log( this.props.location);
-    const { created, selectedFoods} = this.props.location.state;
+    console.log( "shoppingList mount:", this.props.location);
+    const { created, selectedFoods} = this.props.location.state.list;
+    console.log( "date created:", created);
+    // TODO: can we { ...this.props.location.state} here?
     this.setState( { created: created, selectedFoods: selectedFoods});
   };
   removeFoodItem = (itemIndex) => {
@@ -24,7 +25,6 @@ export default class ShoppingList extends Component {
   addFood = (food) => {
     const newFoods = this.state.selectedFoods.concat(food);
     this.setState({ selectedFoods: newFoods });
-    console.log( "date created:", this.state.created.format( 'DD-MMM-YYYY HH:mm'));
   };
 
   render() {

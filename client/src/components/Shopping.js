@@ -1,11 +1,11 @@
 import React from 'react';
 import {Redirect} from 'react-router-dom';
 import LocalDB from '../LocalDB';
-import moment from 'moment';
 
 export default class Shopping extends React.Component {
   state = {
     goShoppingList: false,
+    selectedList : null,
     shopping_lists: []
   };
   componentWillMount = () => {
@@ -25,15 +25,17 @@ export default class Shopping extends React.Component {
     LocalDB.close();
   };
   newList = () => {
-    this.setState( { goShoppingList: { created: moment(), selectedFoods: []}});
+    this.setState( { goShoppingList: true,
+      selectedList: { created: new Date(), selectedFoods: []}
+    });
   };
   render = () => {
     if( this.state.goShoppingList){
-      console.log( "moving to shopping list with:", this.state.goShoppingList);
+      console.log( "moving to shopping list with:", this.state.selectedList);
       return (
         <Redirect to={{
           pathname:"/list",
-          state: { list: this.state.goShoppingList}
+          state: { list: this.state.selectedList}
         }} />
       );
     }
