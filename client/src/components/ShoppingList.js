@@ -56,8 +56,8 @@ export default class ShoppingList extends Component {
 
   render() {
     const { selectedFoods } = this.state;
-    const field_valid = { "border-color": "green" };
-    const field_invalid = { "border-color": "red" };
+    const field_valid = { borderColor: "green" };
+    const field_invalid = { borderColor: "red" };
     // FIXME: className = App  could be why we're having trouble
     return (
       <div>
