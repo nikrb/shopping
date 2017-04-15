@@ -79,6 +79,15 @@ app.post( '/api/list', (req, res) => {
   });
 });
 
+app.delete( '/api/list', (req, res) => {
+  const {created} = req.body;
+  console.log( "delete list created:", created);
+  db.collection( 'shoppinglists').findOneAndDelete({ created: created})
+  .then( (results) => {
+    res.json( results);
+  });
+});
+
 app.listen(app.get('port'), () => {
   console.log(`Find the server at: http://localhost:${app.get('port')}/`); // eslint-disable-line no-console
 });

@@ -25,7 +25,20 @@ function postList( list){
     body: JSON.stringify( list)
   }).then( function( response){
     console.log( "post list response:", response);
-  })
+  });
+}
+function deleteList( list_created){
+  const list = { created: list_created};
+  fetch( '/api/list', {
+    method: 'delete',
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify( list)
+  }).then( function( response){
+    console.log( "delete list response:", response);
+  });
 }
 
 function postFood( food){
@@ -56,5 +69,5 @@ function parseJSON(response) {
   return response.json();
 }
 
-const Client = { search, getLists, postList, postFood };
+const Client = { search, getLists, postList, deleteList, postFood };
 export default Client;

@@ -26,9 +26,6 @@ export default class Shopping extends React.Component {
   };
   listClicked = ( item_id) => {
     console.log( "list clicked:", item_id);
-    if( this.state.shopping_lists.length ){
-      console.log( "first list created:", this.state.shopping_lists[0].created);
-    }
     const selected_list = this.state.shopping_lists.find( ( list) => {
       return list.created === item_id;
     });
@@ -40,6 +37,14 @@ export default class Shopping extends React.Component {
     } else {
       console.error( "couldn't find shopping list created on:", item_id);
     }
+  };
+  deleteClicked = ( item_id) => {
+    console.log( "delete clicked for id:", item_id);
+    const newlist = this.state.shopping_lists.filter( (list) => {
+      return list.created !== item_id;
+    });
+    this.setState( { shopping_lists: newlist});
+    Client.deleteList( item_id);
   };
   render = () => {
     if( this.state.goShoppingList){
@@ -55,7 +60,7 @@ export default class Shopping extends React.Component {
       const dt = moment( item.created).format( "DD-MMM-YYYY HH:mm");
       return (
         <ListItem key={ndx} itemClicked={this.listClicked}
-          item_id={item.created} item_text={dt} />
+          item_id={item.created} item_text={dt} deleteClicked={this.deleteClicked} />
       );
     });
     return (
