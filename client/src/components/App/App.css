@@ -89,4 +89,5 @@ button:focus {
 
 li {
   cursor: pointer;
+  margin-bottom: 5px;
 }
