@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import LocalDB from '../LocalDB';
 import SelectedFoods from './SelectedFoods';
 import FoodSearch from './FoodSearch';
+import Client from './Client';
 
 export default class ShoppingList extends Component {
   state = {
@@ -14,6 +14,10 @@ export default class ShoppingList extends Component {
     console.log( "date created:", created);
     // TODO: can we { ...this.props.location.state} here?
     this.setState( { created: created, selectedFoods: selectedFoods});
+  };
+  componentWillUnmount = () => {
+    Client.postList( { created: this.state.created,
+      selectedFoods: this.state.selectedFoods});
   };
   removeFoodItem = (itemIndex) => {
     const filteredFoods = this.state.selectedFoods.filter(
