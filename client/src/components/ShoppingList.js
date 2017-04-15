@@ -17,7 +17,11 @@ export default class ShoppingList extends Component {
   };
   componentWillUnmount = () => {
     Client.postList( { created: this.state.created,
-      selectedFoods: this.state.selectedFoods});
+      selectedFoods: this.state.selectedFoods.map( (food) => {
+        return { name: food.name, units: food.units,
+          amount: food.amount, cost: food.cost};
+      })
+    });
   };
   removeFoodItem = (itemIndex) => {
     const filteredFoods = this.state.selectedFoods.filter(
@@ -27,8 +31,15 @@ export default class ShoppingList extends Component {
   };
 
   addFood = (food) => {
+    console.log( "adding food:", food);
     const newFoods = this.state.selectedFoods.concat(food);
-    this.setState({ selectedFoods: newFoods });
+    let upd = { selectedFoods: newFoods };
+    if( !food.exists){
+      upd.exists = true;
+      const nf = { name: food.name, units: food.units};
+      Client.postFood( nf);
+    }
+    this.setState( upd);
   };
 
   render() {

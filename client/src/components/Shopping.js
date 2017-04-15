@@ -2,6 +2,7 @@ import React from 'react';
 import {Redirect} from 'react-router-dom';
 import Client from './Client';
 import ListItem from './ListItem';
+import moment from 'moment';
 
 export default class Shopping extends React.Component {
   MATCHING_ITEM_LIMIT = 25;
@@ -23,13 +24,13 @@ export default class Shopping extends React.Component {
       selectedList: { created: new Date(), selectedFoods: []}
     });
   };
-  listClicked = ( item_text) => {
-    console.log( "list clicked:", item_text);
+  listClicked = ( item_id) => {
+    console.log( "list clicked:", item_id);
     if( this.state.shopping_lists.length ){
       console.log( "first list created:", this.state.shopping_lists[0].created);
     }
     const selected_list = this.state.shopping_lists.find( ( list) => {
-      return list.created === item_text;
+      return list.created === item_id;
     });
     console.log( "edit list:", selected_list);
     if( selected_list){
@@ -37,7 +38,7 @@ export default class Shopping extends React.Component {
         selectedList: selected_list
       });
     } else {
-      console.error( "couldn't find shopping list created on:", item_text);
+      console.error( "couldn't find shopping list created on:", item_id);
     }
   };
   render = () => {
@@ -51,15 +52,17 @@ export default class Shopping extends React.Component {
       );
     }
     const lists = this.state.shopping_lists.map( (item, ndx) => {
+      const dt = moment( item.created).format( "DD-MMM-YYYY HH:mm");
       return (
-        <ListItem key={ndx} itemClicked={this.listClicked} item_text={item.created} />
+        <ListItem key={ndx} itemClicked={this.listClicked}
+          item_id={item.created} item_text={dt} />
       );
     });
     return (
       <div>
         <h1>Shopping Lists</h1>
         <div className="container">
-          <button type="button" onClick={this.newList} >+</button>
+          <button type="button" onClick={this.newList} >New</button>
           <ul>
             {lists}
           </ul>

@@ -48,6 +48,17 @@ app.get('/api/food', (req, res) => {
 app.post( '/api/food', (req,res) => {
   const food = req.body;
   console.log( "adding food:", food);
+  db.collection( 'foods').findOne( { name: food.name, units: food.units})
+  .then( function( results){
+    if( results === null){
+      db.collection( 'foods').insertOne( food)
+      .then( function( results){
+        res.json( results);
+      });
+    } else {
+      res.json( results);
+    }
+  });
 });
 
 app.get( '/api/lists', (req, res) => {
@@ -59,13 +70,11 @@ app.get( '/api/lists', (req, res) => {
 
 app.post( '/api/list', (req, res) => {
   const list = req.body;
-  console.log( "post lists:", list);
   db.collection( 'shoppinglists').findOneAndReplace(
     { created: list.created},
     list,
     { upsert: true}
   ).then( function( results){
-    console.log( "post lists results:", results);
     res.json( results);
   });
 });

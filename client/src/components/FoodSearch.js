@@ -7,6 +7,7 @@ class FoodSearch extends React.Component {
   state = {
     foods: [],
     name: "",
+    exists: false, // does the search food already exist?
     units: "kg",
     amount: "",
     cost:"",
@@ -17,6 +18,7 @@ class FoodSearch extends React.Component {
     const value = e.target.value;
     this.setState({
       searchValue: value,
+      exists: false
     });
     if (value === '') {
       this.setState({ foods: []});
@@ -38,22 +40,21 @@ class FoodSearch extends React.Component {
 
   handleSearchCancel = () => {
     this.setState({ foods: [], searchValue: '',
-      name: "", units: "kg", amount: "", cost:""
+      name: "", units: "kg", amount: "", cost:"", exists: false
     });
   };
 
   handleFoodClick = function( food){
     console.log( "food clicked:", food);
-    this.setState({ name: food.name, searchValue: food.name, units:food.units}, function(){
+    this.setState({ name: food.name, searchValue: food.name, units:food.units, exists:true}, function(){
       console.log( "state:", this.state);
     });
     this.entry_amount.focus();
   };
 
   handleSearchSelect = () => {
-    const food = { name: this.state.searchValue, units: this.state.units,
+    const food = { name: this.state.searchValue, units: this.state.units, exists:this.state.exists,
       amount: parseFloat( this.state.amount), cost: parseFloat( this.state.cost) };
-    console.log( "add food:", food);
     this.props.onFoodClick( food);
     this.handleSearchCancel();
     this.search_input.focus();

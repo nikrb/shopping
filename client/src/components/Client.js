@@ -28,6 +28,19 @@ function postList( list){
   })
 }
 
+function postFood( food){
+  fetch( '/api/food', {
+    method: 'post',
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify( food)
+  }).then( function( response){
+    console.log( "post food response:", response);
+  })
+}
+
 function checkStatus(response) {
   if (response.status >= 200 && response.status < 300) {
     return response;
@@ -43,5 +56,5 @@ function parseJSON(response) {
   return response.json();
 }
 
-const Client = { search, getLists, postList };
+const Client = { search, getLists, postList, postFood };
 export default Client;
