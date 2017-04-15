@@ -87,6 +87,6 @@ button:focus {
   text-align: left;
 }
 
-.nav {
-  list-style: none;
+li {
+  cursor: pointer;
 }
