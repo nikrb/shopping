@@ -1,33 +1,44 @@
 import React from 'react';
 import {Redirect} from 'react-router-dom';
-import LocalDB from '../LocalDB';
+import Client from './Client';
+import ListItem from './ListItem';
 
 export default class Shopping extends React.Component {
+  MATCHING_ITEM_LIMIT = 25;
   state = {
     goShoppingList: false,
     selectedList : null,
     shopping_lists: []
   };
   componentWillMount = () => {
-    console.log( "init local db");
-    LocalDB.init()
-    .then( () => {
-      console.log( "local db init done, getall shopping lists");
-      LocalDB.getAll()
-      .then( (list) => {
-        console.log( "shopping list:", this.state.shopping_lists);
-        this.setState( { shopping_lists: list});
-      });
+    Client.getLists( (lists) => {
+      this.setState({ shopping_lists: lists.slice(0, this.MATCHING_ITEM_LIMIT)});
     });
   };
   componentWillUnmount = () => {
-    console.log( "closing local db");
-    LocalDB.close();
+
   };
   newList = () => {
     this.setState( { goShoppingList: true,
       selectedList: { created: new Date(), selectedFoods: []}
     });
+  };
+  listClicked = ( item_text) => {
+    console.log( "list clicked:", item_text);
+    if( this.state.shopping_lists.length ){
+      console.log( "first list created:", this.state.shopping_lists[0].created);
+    }
+    const selected_list = this.state.shopping_lists.find( ( list) => {
+      return list.created === item_text;
+    });
+    console.log( "edit list:", selected_list);
+    if( selected_list){
+      this.setState( { goShoppingList: true,
+        selectedList: selected_list
+      });
+    } else {
+      console.error( "couldn't find shopping list created on:", item_text);
+    }
   };
   render = () => {
     if( this.state.goShoppingList){
@@ -39,9 +50,10 @@ export default class Shopping extends React.Component {
         }} />
       );
     }
-    const lists = this.state.shopping_lists.map( (item) => {
+    const lists = this.state.shopping_lists.map( (item, ndx) => {
+      // <li key={ndx} onClick={this.listClicked} >{item.created}</li>
       return (
-        <tr><td>{item.created}</td></tr>
+        <ListItem key={ndx} itemClicked={this.listClicked} item_text={item.created} />
       );
     });
     return (
@@ -49,9 +61,9 @@ export default class Shopping extends React.Component {
         <h1>Shopping Lists</h1>
         <div className="container">
           <button type="button" onClick={this.newList} >+</button>
-          <table>
+          <ul>
             {lists}
-          </table>
+          </ul>
         </div>
       </div>
     );
