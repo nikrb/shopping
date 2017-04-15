@@ -62,7 +62,7 @@ app.post( '/api/food', (req,res) => {
 });
 
 app.get( '/api/lists', (req, res) => {
-  db.collection( 'shoppinglists').find()
+  db.collection( 'shoppinglists').find().sort( {created: -1})
   .toArray( function( err, items){
     res.json( items);
   });
