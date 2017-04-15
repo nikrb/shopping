@@ -50,6 +50,26 @@ app.post( '/api/food', (req,res) => {
   console.log( "adding food:", food);
 });
 
+app.get( '/api/lists', (req, res) => {
+  db.collection( 'shoppinglists').find()
+  .toArray( function( err, items){
+    res.json( items);
+  });
+});
+
+app.post( '/api/list', (req, res) => {
+  const list = req.body;
+  console.log( "post lists:", list);
+  db.collection( 'shoppinglists').findOneAndReplace(
+    { created: list.created},
+    list,
+    { upsert: true}
+  ).then( function( results){
+    console.log( "post lists results:", results);
+    res.json( results);
+  });
+});
+
 app.listen(app.get('port'), () => {
   console.log(`Find the server at: http://localhost:${app.get('port')}/`); // eslint-disable-line no-console
 });
