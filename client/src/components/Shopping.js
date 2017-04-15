@@ -51,7 +51,6 @@ export default class Shopping extends React.Component {
       );
     }
     const lists = this.state.shopping_lists.map( (item, ndx) => {
-      // <li key={ndx} onClick={this.listClicked} >{item.created}</li>
       return (
         <ListItem key={ndx} itemClicked={this.listClicked} item_text={item.created} />
       );
