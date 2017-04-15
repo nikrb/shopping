@@ -87,6 +87,10 @@ button:focus {
   text-align: left;
 }
 
+.nav ul{
+  display: flex;
+  flex-direction: row;
+}
 ul {
   list-style-type: none;
 }
