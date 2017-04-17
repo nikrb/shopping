@@ -48,7 +48,6 @@ app.get('/api/food', (req, res) => {
 
 app.post( '/api/food', (req,res) => {
   const food = req.body;
-  console.log( "adding food:", food);
   db.collection( 'foods').findOne( { name: food.name, units: food.units})
   .then( function( results){
     if( results === null){
