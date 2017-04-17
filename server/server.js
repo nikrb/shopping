@@ -32,7 +32,8 @@ app.use(function(req, res, next) {
 app.use( bodyParser.json());
 
 app.get('/api/food', (req, res) => {
-  const param = req.query.q;
+  // replace re special chars
+  const param = req.query.q.replace( /([.?*+^$[\]\\(){}|-])/g, "\\$1");
   // allow fetch all
   let search = {};
   if (param) {
