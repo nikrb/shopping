@@ -62,7 +62,7 @@ app.post( '/api/food', (req,res) => {
 });
 
 app.get( '/api/lists', (req, res) => {
-  db.collection( 'shoppinglists').find().sort( {created: -1})
+  db.collection( 'shoppinglists').find().sort( { created: -1})
   .toArray( function( err, items){
     res.json( items);
   });
@@ -70,6 +70,7 @@ app.get( '/api/lists', (req, res) => {
 
 app.post( '/api/list', (req, res) => {
   const list = req.body;
+  list.created = new Date( list.created);
   db.collection( 'shoppinglists').findOneAndReplace(
     { created: list.created},
     list,
