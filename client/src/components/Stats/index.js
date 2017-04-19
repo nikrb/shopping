@@ -32,6 +32,7 @@ export default class Stats extends Component {
     data.sort( function( a, b){
       if( a.name > b.name) return 1;
       else if( a.name < b.name) return -1;
+      else if( moment( a.created) > moment( b.created)) return 1;
       return 0;
     });
     const rows = data.map( function( item, ndx){
