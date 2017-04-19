@@ -39,7 +39,7 @@ export default class Stats extends Component {
       return (
         <tr key={ndx}><td>{item.name}</td>
           <td>{moment( item.created).format("DD-MMM-YYYY HH:mm")}</td>
-          <td>{item.cost}</td></tr>
+          <td className="right-align">{item.cost.toFixed(2)}</td></tr>
       );
     });
 
