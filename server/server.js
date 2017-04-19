@@ -1,7 +1,7 @@
 const express = require('express');
 const moment  = require( 'moment');
 const MongoClient = require('mongodb').MongoClient;
-// var ObjectId = require('mongodb').ObjectID;
+const ObjectId = require('mongodb').ObjectID;
 const app = express();
 const bodyParser = require('body-parser');
 
@@ -59,6 +59,37 @@ app.post( '/api/food', (req,res) => {
       res.json( results);
     }
   });
+});
+
+app.put( '/api/food', (req, res) => {
+  const food = req.body;
+
+  db.collection( 'foods').findOneAndUpdate(
+    { name: food.name, units: food.units},
+    { $set: { name: food.new_name}}
+  ).then( function( update_results){
+    console.log( "food udpated results:", update_results)
+    res.json( update_results);
+  });
+  // now find all the foods matching in all the lists
+  /*
+  db.collection( 'foods').findOne( { name: food.name, units: food.units})
+  .then( function( results){
+    console.log( "put food find response:", results);
+    if( results === null){
+      res.json( {error: "food not found for update"});
+    } else {
+      console.log( "update food id:", results._id);
+      db.collection( 'foods').findOneAndUpdate(
+        { _id: ObjectId(results._id)},
+        { $set: { name: food.new_name}}
+      ).then( function( update_results){
+        console.log( "food udpated results:", update_results)
+        res.json( update_results);
+      });
+    }
+  });
+  */
 });
 
 app.get( '/api/lists', (req, res) => {

@@ -51,7 +51,19 @@ function postFood( food){
     body: JSON.stringify( food)
   }).then( function( response){
     console.log( "post food response:", response);
-  })
+  });
+}
+function updateFood( food){
+  fetch( '/api/food', {
+    method: 'put',
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify( food)
+  }).then( function( response){
+    console.log( "put food response:", response);
+  });
 }
 
 function checkStatus(response) {
@@ -69,5 +81,5 @@ function parseJSON(response) {
   return response.json();
 }
 
-const Client = { search, getLists, postList, deleteList, postFood };
+const Client = { search, getLists, postList, deleteList, postFood, updateFood };
 export default Client;
