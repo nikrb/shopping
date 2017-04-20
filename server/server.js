@@ -66,34 +66,54 @@ app.post( '/api/food', (req,res) => {
 
 app.put( '/api/food', (req, res) => {
   const food = req.body;
-
-  db.collection( 'foods').findOneAndUpdate(
-    { name: food.name, units: food.units},
-    { $set: { name: food.new_name}},
-    { upsert: true}
-  ).then( function( update_results){
-    console.log( "food udpated results:", update_results)
-    res.json( update_results);
-  });
-  // now find all the foods matching in all the lists
-  /*
-  db.collection( 'foods').findOne( { name: food.name, units: food.units})
-  .then( function( results){
-    console.log( "put food find response:", results);
-    if( results === null){
-      res.json( {error: "food not found for update"});
-    } else {
-      console.log( "update food id:", results._id);
-      db.collection( 'foods').findOneAndUpdate(
-        { _id: ObjectId(results._id)},
-        { $set: { name: food.new_name}}
-      ).then( function( update_results){
-        console.log( "food udpated results:", update_results)
-        res.json( update_results);
+  let promises = [];
+  promises.push( new Promise( function( resolve, reject){
+    db.collection( 'foods').findOneAndUpdate(
+      { name: food.name, units: food.units},
+      { $set: { name: food.new_name}},
+      { upsert: true}
+    ).then( function( results){
+      resolve( results);
+    });
+  }));
+  // now update all the foods matching in all the lists
+  promises.push(
+    new Promise( function( resolve, reject){
+      db.collection( 'shoppinglists').find( {}).toArray()
+      .then( function( lists){
+        let total = 0;
+        lists.forEach( function( list, ndx, lists_array){
+          let count = 0;
+          list.selectedFoods.forEach( function( fooditem){
+            if( fooditem.name === food.name){
+              fooditem.name = food.new_name;
+              count += 1;
+            }
+          });
+          if( count){
+            total += count;
+            console.log( "saving updates for list:", list.created);
+            // FIXME: deprecated
+            db.collection( 'shoppinglists').save( list);
+          }
+          if( ndx === lists_array.length -1){
+            console.log( "selectedFoods update finished, total update:", total);
+            resolve( {message: "selectedFoods updated"});
+          }
+        });
+        // TODO: shouldn't this work?
+        // db.collection( 'shoppinglists').updateMany(
+        //   { selectedFoods$name: food.name},
+        //   { $set: {selectedFoods$name:food.new_name}}
+        // ).then( function( results){
+        //   resolve( results);
+        // });
       });
-    }
+    })
+  );
+  Promise.all( promises).then( function( allresults){
+    res.json( allresults);
   });
-  */
 });
 
 app.get( '/api/lists', (req, res) => {
