@@ -64,7 +64,9 @@ function updateFood( food){
       'Content-Type': 'application/json'
     },
     body: JSON.stringify( food)
-  }).then( function( response){
+  }).then(checkStatus)
+    .then(parseJSON)
+    .then( function( response){
     console.log( "put food response:", response);
   });
 }
