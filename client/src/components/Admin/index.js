@@ -5,26 +5,36 @@ import Client from '../Client';
 export default class Admin extends React.Component {
   selected_food = null;
   handleFoodSaveClick = () => {
-    console.log( "admin food updated:", food);
+    console.log( "admin food updated:", this.selected_food);
     // TODO: really should error check
-    Client.updateFood( { name: food.name, units: food.units,
-      new_name: food.new_name}
+    Client.updateFood( { name: this.selected_food.name,
+      units: this.selected_food.units,
+      new_name: this.selected_food.new_name}
     );
   };
   handleFoodUpdate = (food) => {
     this.selected_food = food;
   };
   render = () => {
+    const container = { display: "flex", flexDirection: "column"};
+    const styles = {
+      display: "flex",
+      flexDirection: "row",
+      justifyContent: "center",
+      alignItems: "baseline"
+    };
     return (
-      <div>
+      <div style={container}>
         <h1>Admin</h1>
-        <FoodFinder handleFoodUpdate={this.handleFoodUpdate} />
+        <div style={styles}>
+          <FoodFinder handleFoodUpdate={this.handleFoodUpdate} />
 
-        <div className="food-field">
-          <label htmlFor="add_button">&nbsp;</label>
-          <button type="button" name="add_button" onClick={this.handleFoodSaveClick}>
-            "Save"
-          </button>
+          <div>
+            <label htmlFor="add_button">&nbsp;</label>
+            <button type="button" name="add_button" onClick={this.handleFoodSaveClick}>
+              Save
+            </button>
+          </div>
         </div>
       </div>
     );
