@@ -69,7 +69,8 @@ app.put( '/api/food', (req, res) => {
 
   db.collection( 'foods').findOneAndUpdate(
     { name: food.name, units: food.units},
-    { $set: { name: food.new_name}}
+    { $set: { name: food.new_name}},
+    { upsert: true}
   ).then( function( update_results){
     console.log( "food udpated results:", update_results)
     res.json( update_results);

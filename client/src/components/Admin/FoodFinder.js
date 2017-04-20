@@ -55,10 +55,6 @@ export default class FoodFinder extends React.Component {
   handleUnitsChange = (e) => {
     this.setState( { units : e.target.value});
   };
-  handleFoodUpdate = () => {
-    this.props.handleFoodUpdate( {name: this.state.name,
-      new_name:this.state.searchValue, units: this.state.units});
-  };
   render = () => {
     const {foods} = this.state;
     // FIXME: using ()=>{} creates a new function for onClick every render
@@ -90,12 +86,6 @@ export default class FoodFinder extends React.Component {
               <option value="kg">Kg</option>
               <option value='unit'>Unit</option>
             </select>
-          </div>
-          <div className="food-field">
-            <label htmlFor="add_button">&nbsp;</label>
-            <button type="button" name="add_button" onClick={this.handleFoodUpdate}>
-              {this.props.buttonLabel}
-            </button>
           </div>
         </div>
         <div>
