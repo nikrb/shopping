@@ -1,3 +1,6 @@
+/**
+ * TODO: we shouldn't have the button in here me thinx
+ */
 import React from 'react';
 import Client from '../Client';
 
@@ -35,9 +38,7 @@ export default class FoodFinder extends React.Component {
 
   handleFoodClick = function( food){
     console.log( "food clicked:", food);
-    this.setState({ name: food.name, searchValue: food.name, units:food.units}, function(){
-      console.log( "state:", this.state);
-    });
+    this.setState({ name: food.name, searchValue: food.name, units:food.units});
   };
   handleUnitsKeyUp = (e) => {
     switch( e.keyCode){
