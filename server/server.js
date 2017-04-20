@@ -98,7 +98,7 @@ app.put( '/api/food', (req, res) => {
           }
           if( ndx === lists_array.length -1){
             console.log( "selectedFoods update finished, total update:", total);
-            resolve( {message: "selectedFoods updated"});
+            resolve( {message: "selectedFoods updated ["+total+"]"});
           }
         });
         // TODO: shouldn't this work?
