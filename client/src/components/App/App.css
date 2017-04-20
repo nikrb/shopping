@@ -1,4 +1,4 @@
-
+/* FIXME: prune */
 html {
   font-family: sans-serif;
 }
@@ -111,16 +111,4 @@ li a:hover {
   a:hover {
     text-decoration: none;
   }
-}
-.food-finder-wrapper {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-#food-finder {
-  margin-top: 1em;
-}
-.food-finder-table {
-  max-width: 50%;
-  margin: 10px auto;
 }
