@@ -1,3 +1,6 @@
+/**
+ * FIXME: do we need to sanitize anything?
+ */
 const express = require('express');
 const moment  = require( 'moment');
 const MongoClient = require('mongodb').MongoClient;

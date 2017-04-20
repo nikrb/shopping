@@ -1,3 +1,6 @@
+/**
+ * FIXME: really must do some error checking
+ */
 /* eslint-disable no-undef */
 function search(query, cb) {
   return fetch(`api/food?q=${query}`, {
