@@ -1,5 +1,5 @@
 /**
- * TODO: we shouldn't have the button in here me thinx
+ * TODO: this.notifyParentOfChange doesn't feel right somehow
  */
 import React from 'react';
 import Client from '../Client';
@@ -13,11 +13,14 @@ export default class FoodFinder extends React.Component {
   };
   MATCHING_ITEM_LIMIT = 9;
 
+  notifyParentOfChange = () => {
+    this.props.handleFoodUpdate({ name: this.state.name,
+      new_name: this.state.searchValue,
+      units: this.state.units});
+  };
   handleSearchChange = (e) => {
     const value = e.target.value;
-    this.setState({
-      searchValue: value
-    });
+    this.setState({ searchValue: value}, () => { this.notifyParentOfChange()});
     if (value === '') {
       this.setState({ foods: []});
     } else {
@@ -38,23 +41,29 @@ export default class FoodFinder extends React.Component {
 
   handleFoodClick = function( food){
     console.log( "food clicked:", food);
-    this.setState({ name: food.name, searchValue: food.name, units:food.units});
+    this.setState({ name: food.name, searchValue: food.name, units:food.units},
+      () => { this.notifyParentOfChange();
+    });
+  };
+  updateUnits = ( value) => {
+    this.setState( { units: value}, () => {this.notifyParentOfChange()});
   };
   handleUnitsKeyUp = (e) => {
     switch( e.keyCode){
       case 75: // k
-        this.setState( { units: 'kg'});
+        this.updateUnits( 'kg');
         break;
       case 85: // u
-        this.setState( { units: 'unit'});
+        this.updateUnits( 'unit');
         break;
       default:
         break;
     }
   };
   handleUnitsChange = (e) => {
-    this.setState( { units : e.target.value});
+    this.updateUnits( e.target.value);
   };
+
   render = () => {
     const {foods} = this.state;
     // FIXME: using ()=>{} creates a new function for onClick every render
@@ -71,15 +80,28 @@ export default class FoodFinder extends React.Component {
       </tr>
     ));
 
+    const food_finder_wrapper = {
+      display: "flex",
+      flexDirection: "column",
+      justifyContent: "center"
+    };
+    const food_finder = {
+      display: "flex",
+      flexDirection: "row",
+      marginTop: "1em"};
+    const food_finder_table = {
+      marginTop: "1em"
+    };
+
     return (
-      <div className="food-finder-wrapper">
-        <div className="food-finder">
-          <div className='food-field'>
+      <div style={food_finder_wrapper}>
+        <div style={food_finder}>
+          <div>
             <label htmlFor="name_field" className="left-align">Name</label>
             <input type='text' placeholder='Search foods...'
               value={this.state.searchValue} onChange={this.handleSearchChange} />
           </div>
-          <div className="food-field">
+          <div>
             <label htmlFor="units_field">Units</label>
             <select name="units_field" onKeyUp={this.handleUnitsKeyUp}
               value={this.state.units} onChange={this.handleUnitsChange} >
@@ -89,7 +111,7 @@ export default class FoodFinder extends React.Component {
           </div>
         </div>
         <div>
-          <div className='food-finder-table'>
+          <div style={food_finder_table} >
             <table>
               <thead>
                 <tr>
