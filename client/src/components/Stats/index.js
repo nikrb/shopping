@@ -35,11 +35,30 @@ export default class Stats extends Component {
       else if( moment( a.created) > moment( b.created)) return 1;
       return 0;
     });
+    const bought_count = data.reduce( function( acc, cur){
+      const found = acc.findIndex( function( ele){
+        return cur.name === ele.name;
+      });
+      if( found === -1){
+        acc.push( {...cur, total: 1});
+      } else {
+        const item = acc[found];
+        acc[found] = {...item, total: item.total+1};
+      }
+      return acc;
+    }, []);
+
     const rows = data.map( function( item, ndx){
       return (
         <tr key={ndx}><td>{item.name}</td>
           <td>{moment( item.created).format("DD-MMM-YYYY HH:mm")}</td>
           <td className="right-align">{item.cost.toFixed(2)}</td></tr>
+      );
+    });
+    const bought_rows = bought_count.map( function( item, ndx){
+      return (
+        <tr key={ndx}><td>{item.name}</td>
+          <td>{item.total}</td></tr>
       );
     });
 
@@ -48,6 +67,14 @@ export default class Stats extends Component {
         <h1>
           Stats
         </h1>
+        <div>
+          <table><thead>
+            <tr><th>food</th><th>times bought</th></tr>
+          </thead><tbody>
+            {bought_rows}
+          </tbody>
+          </table>
+        </div>
         <div>
           <table><thead>
             <tr><th>food</th><th>purchase dates</th><th>price</th></tr>
