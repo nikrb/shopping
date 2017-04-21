@@ -63,14 +63,26 @@ export default class Shopping extends React.Component {
           item_id={item.created} item_text={dt} deleteClicked={this.deleteClicked} />
       );
     });
+    const outer = { display:"flex", flexDirection:"row", justifyContent: "center"}
+    const wrapper = { display: "flex", flexDirection: "column",
+      alignItems: "center"
+    };
+    const container = {
+      padding: "20px",
+      border: "1px solid rgba( 0,0,0,0.2)",
+      borderRadius: "10px",
+      backgroundColor: "rgba( 127,127,255,0.1)"
+    }
     return (
-      <div>
-        <h1>Shopping Lists</h1>
-        <div className="container">
-          <button type="button" onClick={this.newList} >New</button>
-          <ul>
-            {lists}
-          </ul>
+      <div style={outer}>
+        <div style={wrapper}>
+          <h1>Shopping Lists</h1>
+          <div style={container}>
+            <button type="button" onClick={this.newList} >New</button>
+            <ul>
+              {lists}
+            </ul>
+          </div>
         </div>
       </div>
     );
