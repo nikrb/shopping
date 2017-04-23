@@ -4,6 +4,7 @@ html {
 }
 h1 {
   text-align: center;
+  margin: 10px auto;
 }
 th {
   padding: 5px;
