@@ -2,7 +2,7 @@
  * TODO: this.notifyParentOfChange doesn't feel right somehow
  */
 import React from 'react';
-import Client from '../Client';
+import Client from './Client';
 
 export default class FoodFinder extends React.Component {
   state = {

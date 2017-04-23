@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Client from '../Client';
+import Client from '../Food/Client';
 // FIXME: can't we just include this once at top of app index.js?
 import '../../concatAll';
 import moment from 'moment';

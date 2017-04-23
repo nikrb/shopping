@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import SelectedFoods from './SelectedFoods';
-import FoodSearch from './FoodSearch';
-import Client from './Client';
+import SelectedFoods from './Food/SelectedFoods';
+import FoodSearch from './Food/FoodSearch';
+import Client from './Food/Client';
 
 export default class ShoppingList extends Component {
   state = {

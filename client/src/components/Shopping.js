@@ -1,7 +1,7 @@
 import React from 'react';
 import {Redirect} from 'react-router-dom';
-import Client from './Client';
-import ListItem from './ListItem';
+import Client from './Food/Client';
+import ListItem from './Food/ListItem';
 import moment from 'moment';
 
 export default class Shopping extends React.Component {

@@ -1,6 +1,6 @@
 import React from 'react';
-import FoodFinder from './FoodFinder';
-import Client from '../Client';
+import FoodFinder from '../Food/FoodFinder';
+import Client from '../Food/Client';
 
 export default class Admin extends React.Component {
   selected_food = null;
