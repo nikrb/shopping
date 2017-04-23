@@ -39,9 +39,11 @@ function deleteList( list_created){
       'Content-Type': 'application/json'
     },
     body: JSON.stringify( list)
-  }).then( function( response){
-    console.log( "delete list response:", response);
-  });
+  }).then(checkStatus)
+    .then(parseJSON)
+    .then( function( response){
+      console.log( "delete list response:", response);
+    });
 }
 
 function postFood( food){
