@@ -5,21 +5,25 @@ import Client from './Food/Client';
 
 export default class ShoppingList extends Component {
   state = {
-    created: null,
-    created_field: "",
+    created: null, // in
+    created_field: "", // out
     // date passed in is always valid
     created_valid: true,
+    vendor: "", // in
+    vendor_field: "", // out (no validation)
     selectedFoods: []
   };
   componentWillMount = () => {
     console.log( "shoppingList mount:", this.props.location);
-    const { created, selectedFoods} = this.props.location.state.list;
+    const { created, vendor, selectedFoods} = this.props.location.state.list;
     console.log( "date created:", created);
     // TODO: can we { ...this.props.location.state} here?
-    this.setState( { created: created, created_field: created, selectedFoods: selectedFoods});
+    this.setState( { created: created, created_field: created,
+      vendor: vendor, vendor_field: vendor, selectedFoods: selectedFoods});
   };
   componentWillUnmount = () => {
     Client.postList( { created: this.state.created,
+      vendor: this.state.vendor_field,
       selectedFoods: this.state.selectedFoods.map( (food) => {
         return { name: food.name, units: food.units,
           amount: food.amount, cost: food.cost};
@@ -53,11 +57,16 @@ export default class ShoppingList extends Component {
         created_valid: true});
     }
   };
+  vendorChanged = (e) => {
+    this.setState( { vendor_field: e.target.value});
+  };
 
   render() {
     const { selectedFoods } = this.state;
     const field_valid = { borderColor: "green" };
     const field_invalid = { borderColor: "red" };
+    // space after label
+    const vendor_margin = { marginLeft:"10px"};
     // FIXME: className = App  could be why we're having trouble
     return (
       <div>
@@ -66,6 +75,10 @@ export default class ShoppingList extends Component {
           <label>Date
             <input type="text" style={this.state.created_valid?field_valid:field_invalid}
               value={this.state.created_field} onChange={this.createdChanged} />
+          </label>
+          <label>Vendor
+            <input type="text" value={this.state.vendor_field} style={vendor_margin}
+              onChange={this.vendorChanged} />
           </label>
         </div>
         <div className='App'>
