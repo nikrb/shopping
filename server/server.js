@@ -138,7 +138,7 @@ app.post( '/api/list', (req, res) => {
 app.delete( '/api/list', (req, res) => {
   const {created} = req.body;
   console.log( "delete list created:", created);
-  db.collection( 'shoppinglists').findOneAndDelete({ created: created})
+  db.collection( 'shoppinglists').deleteOne({ created: new Date( created)})
   .then( (results) => {
     res.json( results);
   });
