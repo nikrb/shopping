@@ -1,0 +1,39 @@
+
+.chart {
+    margin-top: 20px;
+    background-color: rgba( 255, 127, 127, 0.2);
+}
+
+.chart rect {
+  fill: steelblue;
+}
+.chart rect:hover {
+  fill: cornflowerblue;
+}
+
+.chart text {
+  fill: black;
+  font: 10px sans-serif;
+  text-anchor: end;
+}
+
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+
+.axis text {
+  font: 10px sans-serif;
+}
+
+.axis_centre text {
+  /* hide xaxis labels */
+  display: none;
+  text-anchor: middle;
+}
+.axis_centre .tick line{
+  /* hide xaxis ticks */
+  visibility:hidden;
+}
