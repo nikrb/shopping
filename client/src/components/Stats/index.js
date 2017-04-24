@@ -124,7 +124,7 @@ export default class Stats extends Component {
   handleMouseEnter = (datarow, x, y) => {
     this.setState( { tooltip_text: datarow.label+":"+datarow.value,
       tooltip_visible:true,
-      tooltip_x: x, tooltip_y: y-24});
+      tooltip_x: x+12, tooltip_y: y});
   };
   handleMouseLeave = () => {
     this.setState( { tooltip_visible: false})
