@@ -5,6 +5,8 @@ import '../../concatAll';
 import moment from 'moment';
 import BarChart from '../BarChart';
 import ToolTip from '../ToolTip';
+import Tabs from '../Tabs';
+import Pane from '../Tabs/Pane';
 
 export default class Stats extends Component {
   // static propTypes = {}
@@ -61,22 +63,32 @@ export default class Stats extends Component {
         <h1>
           Stats
         </h1>
-        <div className="button-bar">
-          Sort
-          <button type="button" onClick={this.handleAlphaSort}
-            className={this.state.sort_by==="alpha"?"button-active":""} >
-            Alpha
-          </button>
-          <button type="button" onClick={this.handleTotalSort}
-            className={this.state.sort_by==="total"?"button-active":""} >
-            Total
-          </button>
-        </div>
-        <div>
-          <BarChart height={container.height} width={container.width} data={chart_data}
-            handleMouseEnter={this.handleMouseEnter} handleMouseLeave={this.handleMouseLeave} />
-          <ToolTip tip_text={this.state.tooltip_text} pos={tooltip} />
-        </div>
+
+        <Tabs selected={0}>
+          <Pane label="Frequency">
+            <div className="button-bar">
+              Sort
+              <button type="button" onClick={this.handleAlphaSort}
+                className={this.state.sort_by==="alpha"?"button-active":""} >
+                Alpha
+              </button>
+              <button type="button" onClick={this.handleTotalSort}
+                className={this.state.sort_by==="total"?"button-active":""} >
+                Total
+              </button>
+            </div>
+            <div>
+              <BarChart height={container.height} width={container.width} data={chart_data}
+                handleMouseEnter={this.handleMouseEnter} handleMouseLeave={this.handleMouseLeave} />
+              <ToolTip tip_text={this.state.tooltip_text} pos={tooltip} />
+            </div>
+          </Pane>
+          <Pane label="Cost">
+            <div>
+              One pane may not work
+            </div>
+          </Pane>
+        </Tabs>
       </div>
     );
   }
