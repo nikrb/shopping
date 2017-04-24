@@ -8,7 +8,7 @@ export default class Shopping extends React.Component {
   MATCHING_ITEM_LIMIT = 25;
   state = {
     goShoppingList: false,
-    selectedList : null,
+    selectedList : 0,
     shopping_lists: []
   };
   componentWillMount = () => {
@@ -21,7 +21,7 @@ export default class Shopping extends React.Component {
   };
   newList = () => {
     this.setState( { goShoppingList: true,
-      selectedList: { created: new Date(), selectedFoods: []}
+      selectedList: { created: new Date(), vendor:"", selectedFoods: []}
     });
   };
   listClicked = ( item_id) => {
