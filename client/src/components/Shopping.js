@@ -57,11 +57,10 @@ export default class Shopping extends React.Component {
       );
     }
     const lists = this.state.shopping_lists.map( (item, ndx) => {
-      console.log( "map item:", item);
       const total = item.selectedFoods.reduce( ( acc, cur) => {
         return acc + cur.cost;
       }, 0.0);
-      const txt = moment( item.created).format( "DD-MMM-YYYY HH:mm") +
+      const txt = moment( item.created).format( "ddd DD-MMM-YYYY HH:mm") +
         " - "+item.vendor+" : £"+total.toFixed(2);
       return (
         <ListItem key={ndx} itemClicked={this.listClicked}
