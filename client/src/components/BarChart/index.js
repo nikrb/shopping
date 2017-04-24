@@ -15,7 +15,7 @@ export default class BarChart extends React.Component {
   handleMouseEnter = function( data, e){
     e.preventDefault();
     e.stopPropagation();
-    this.props.handleMouseEnter( data, e.clientX, e.clientY);
+    this.props.handleMouseEnter( data, e.pageX, e.pageY);
   };
   handleMouseLeave = (e) => {
     e.preventDefault();
