@@ -84,6 +84,7 @@ export default class ShoppingList extends Component {
       fontSize: "0.5em", fontStyle: "italic"
     }
     // FIXME: className = App  could be why we're having trouble
+    // using object assign with empty object or we mutate state
     return (
       <div>
         <h1>Shopping List</h1>
