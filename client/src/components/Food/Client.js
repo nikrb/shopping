@@ -26,7 +26,9 @@ function postList( list){
       'Content-Type': 'application/json'
     },
     body: JSON.stringify( list)
-  }).then( function( response){
+  }).then( checkStatus)
+    .then( parseJSON)
+    .then( function( response){
     console.log( "post list response:", response);
   });
 }
@@ -54,7 +56,9 @@ function postFood( food){
       'Content-Type': 'application/json'
     },
     body: JSON.stringify( food)
-  }).then( function( response){
+  }).then( checkStatus)
+    .then( parseJSON)
+    .then( function( response){
     console.log( "post food response:", response);
   });
 }
