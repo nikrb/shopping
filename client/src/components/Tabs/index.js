@@ -19,9 +19,10 @@ export default class Tabs extends React.Component {
   };
   _renderTitles = () => {
     function labels(child, index) {
+      const active_class = this.state.selected === index?'active':'';
       return (
         <li key={index}>
-          <a href="#"
+          <a href="#" className={active_class}
             onClick={this.handleClick.bind(this, index)}>
             {child.props.label}
           </a>
